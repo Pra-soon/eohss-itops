@@ -11,7 +11,8 @@
         "openid",
         "profile"
       ],
-      "redirectSignIn": "http://localhost:3000/",
+      "redirectSignIn": "https://d1gx556jx13lly.cloudfront.net/",
+      "redirectSignOut": "https://d1gx556jx13lly.cloudfront.net/",
       "responseType": "code"
     }
   },
