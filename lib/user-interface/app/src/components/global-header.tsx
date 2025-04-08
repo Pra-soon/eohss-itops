@@ -39,13 +39,27 @@ export default function GlobalHeader() {
       setTheme(StorageHelper.applyTheme(Mode.Dark));
     }
   };
-  const onUserProfileClick = ({
+  const onUserProfileClick = async ({
     detail,
   }: {
     detail: ButtonDropdownProps.ItemClickDetails;
   }) => {
     if (detail.id === "signout") {
-      Auth.signOut();
+      try {
+        // First sign out from Cognito
+        await Auth.signOut();
+        
+        // Clear any local storage items
+        localStorage.clear();
+        sessionStorage.clear();
+        
+        // Redirect to the login page
+        window.location.href = "/";
+      } catch (error) {
+        console.error("Error signing out:", error);
+        // Still try to redirect even if there's an error
+        window.location.href = "/";
+      }
     }
   };
 
