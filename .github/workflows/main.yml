@@ -9,7 +9,7 @@ jobs:
     steps:
     # Step 1: Check out the repository’s code
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3.1.2
     # Step 2: Set up Node.js with the version required by your project
     - name: Set up Node.js
       uses: actions/setup-node@v3
