@@ -46,18 +46,15 @@ export default function GlobalHeader() {
   }) => {
     if (detail.id === "signout") {
       try {
-        // First sign out from Cognito
-        await Auth.signOut();
+        // Use Auth.signOut() with the proper Cognito sign-out flow
+        // This will automatically redirect to the configured sign-out URL in aws-exports.json
+        await Auth.signOut({ global: true });
         
-        // Clear any local storage items
-        localStorage.clear();
-        sessionStorage.clear();
-        
-        // Redirect to the login page
-        window.location.href = "/";
+        // No need to manually redirect as Cognito will handle it
+        // The global: true option ensures sign-out from all devices
       } catch (error) {
         console.error("Error signing out:", error);
-        // Still try to redirect even if there's an error
+        // If there's an error with Cognito sign-out, fallback to manual redirect
         window.location.href = "/";
       }
     }
